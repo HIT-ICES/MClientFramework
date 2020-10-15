@@ -1,0 +1,4 @@
+com\wangteng\mclient\annotation\MClient.class
+com\wangteng\mclient\core\MClientAutoComponentScan.class
+com\wangteng\mclient\aop\MLogFunctionAop.class
+com\wangteng\mclient\annotation\MLogFunction.class

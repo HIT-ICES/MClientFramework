@@ -1,0 +1,12 @@
+D:\MClientFramework\MClient\src\main\java\com\wangteng\mclient\core\MClientAutoComponentScan.java
+D:\MClientFramework\MClient\src\main\java\com\wangteng\mclient\core\MObjectProxy.java
+D:\MClientFramework\MClient\src\main\java\com\wangteng\mclient\annotation\MLogFunction.java
+D:\MClientFramework\MClient\src\main\java\com\wangteng\mclient\aop\MLogFunctionAop.java
+D:\MClientFramework\MClient\src\main\java\com\wangteng\mclient\core\MAdaptor.java
+D:\MClientFramework\MClient\src\main\java\com\wangteng\mclient\core\MClientSkeleton.java
+D:\MClientFramework\MClient\src\main\java\com\wangteng\mclient\annotation\MClient.java
+D:\MClientFramework\MClient\src\main\java\com\wangteng\mclient\base\MObject.java
+D:\MClientFramework\MClient\src\main\java\com\wangteng\mclient\controller\MController.java
+D:\MClientFramework\MClient\src\main\java\com\wangteng\mclient\ApplicationMain.java
+D:\MClientFramework\MClient\src\main\java\com\wangteng\mclient\utils\RequestUtils.java
+D:\MClientFramework\MClient\src\main\java\com\wangteng\mclient\utils\StringUtils.java
