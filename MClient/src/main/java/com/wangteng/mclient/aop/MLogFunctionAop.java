@@ -14,11 +14,11 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-public class MLogInfoAop {
+public class MLogFunctionAop {
 
     private static ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
 
-    @Pointcut("@annotation(com.wangteng.mclient.annotation.MLogInfo)")
+    @Pointcut("@annotation(com.wangteng.mclient.annotation.MLogFunction)")
     public void logFunction(){}
 
     @Before("logFunction()")
