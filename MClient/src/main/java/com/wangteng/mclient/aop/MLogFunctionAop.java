@@ -5,6 +5,7 @@ package com.wangteng.mclient.aop;
 import com.wangteng.mclient.core.MLogAdaptor;
 import com.wangteng.mclient.log.LogPoint;
 import com.wangteng.mclient.log.LogType;
+import com.wangteng.mclient.utils.MLogFunctionUtils;
 import com.wangteng.mclient.utils.MLogUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -26,14 +27,16 @@ public class MLogFunctionAop {
         try {
             MLogAdaptor logAdaptor = (MLogAdaptor) ctx.getBean(joinPoint.getSignature().getName());
             if (logAdaptor!=null){
-                logAdaptor.getLogMap().get(LogType.LogInfo).setInfo(LogPoint.Before,joinPoint);
-                logAdaptor.getLogMap().get(LogType.LogExtra).setInfo(LogPoint.Before,joinPoint);
-                MLogUtils.log(logAdaptor,logAdaptor.getLogMap().get(LogType.LogInfo).toString());
-                MLogUtils.log(logAdaptor,logAdaptor.getLogMap().get(LogType.LogExtra).toString());
+                for(LogType logType : MLogFunctionUtils.before){
+                    if(logAdaptor.getLogMap().get(logType)!=null){
+                        logAdaptor.getLogMap().get(logType).setInfo(LogPoint.Before,joinPoint);
+                        MLogUtils.log(logAdaptor,logAdaptor.getLogMap().get(logType).toString());
+                    }
+
+                }
             }
         }catch (Exception e){
-            System.out.println(e);
-            // TODO: 接口没有配置文件的情况
+            // TODO: 接口无配置文件
         }
     }
 
@@ -42,13 +45,15 @@ public class MLogFunctionAop {
         try {
             MLogAdaptor logAdaptor = (MLogAdaptor) ctx.getBean(joinPoint.getSignature().getName());
             if (logAdaptor!=null){
-                logAdaptor.getLogMap().get(LogType.LogInfo).setInfo(LogPoint.After,joinPoint);
-                logAdaptor.getLogMap().get(LogType.LogExtra).setInfo(LogPoint.After,joinPoint);
-                MLogUtils.log(logAdaptor,logAdaptor.getLogMap().get(LogType.LogInfo).toString());
-                MLogUtils.log(logAdaptor,logAdaptor.getLogMap().get(LogType.LogExtra).toString());
+                for(LogType logType : MLogFunctionUtils.after){
+                    if(logAdaptor.getLogMap().get(logType)!=null){
+                        logAdaptor.getLogMap().get(logType).setInfo(LogPoint.After,joinPoint);
+                        MLogUtils.log(logAdaptor,logAdaptor.getLogMap().get(logType).toString());
+                    }
+                }
             }
         }catch (Exception e){
-            // TODO: 接口没有配置文件的情况
+            // TODO: 接口无配置文件
         }
     }
 
@@ -57,11 +62,16 @@ public class MLogFunctionAop {
         try {
             MLogAdaptor logAdaptor = (MLogAdaptor) ctx.getBean(joinPoint.getSignature().getName());
             if (logAdaptor!=null){
-                logAdaptor.getLogMap().get(LogType.LogBug).setInfo(LogPoint.AfterThrowing,joinPoint,e);
-                MLogUtils.log(logAdaptor,logAdaptor.getLogMap().get(LogType.LogBug).toString());
+                for(LogType logType : MLogFunctionUtils.afterThrowing){
+                    if(logAdaptor.getLogMap().get(logType)!=null){
+                        logAdaptor.getLogMap().get(logType).setInfo(LogPoint.AfterThrowing,joinPoint,e);
+                        MLogUtils.log(logAdaptor,logAdaptor.getLogMap().get(logType).toString());
+                    }
+
+                }
             }
         }catch (Exception ex){
-            // TODO: 接口没有配置文件的情况
+            // TODO: 接口无配置文件
         }
     }
 }

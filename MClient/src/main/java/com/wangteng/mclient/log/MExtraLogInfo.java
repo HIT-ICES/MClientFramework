@@ -27,7 +27,6 @@ public class MExtraLogInfo extends MLog{
         super.setInfo(logPoint, joinPoint);
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         if (request != null) {
-            // TODO: 获取特定请求头信息
             for (Map.Entry<String, String> entry : header.entrySet()) {
                 entry.setValue(request.getHeader(entry.getKey()));
             }
@@ -42,7 +41,7 @@ public class MExtraLogInfo extends MLog{
         }
         return "["+ logName + '|' +
                 logDateTime + '|' +
-                logPoint + '|' + ']' +
+                logPoint +']' +
                 ':'+headerString;
     }
 }
