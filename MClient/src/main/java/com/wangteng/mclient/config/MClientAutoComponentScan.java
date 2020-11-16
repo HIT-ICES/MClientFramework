@@ -1,6 +1,7 @@
 package com.wangteng.mclient.config;
 
 import com.wangteng.mclient.aop.MLogFunctionAop;
+import com.wangteng.mclient.controller.MController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -8,4 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class MClientAutoComponentScan {
     @Bean
     public MLogFunctionAop mLogFunctionAop(){return new MLogFunctionAop();}
+
+
+
 }
