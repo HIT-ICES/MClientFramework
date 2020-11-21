@@ -1,18 +1,19 @@
 package com.wangteng.mclient.base;
 
-import afu.org.checkerframework.checker.oigj.qual.O;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
 
+@Slf4j
 @Getter
 @Setter
 @ToString
 public class MResponse {
     private String status = "Success";
-    private Map<String, Object> valueMap = new HashMap<>();
+    private Map<String, Object> valueMap = new LinkedHashMap<>();
 
     public Object get(String key) {
         return this.valueMap.getOrDefault(key, null);
@@ -23,13 +24,23 @@ public class MResponse {
         return this;
     }
 
-    public Object[] getObject(){
+    public Object[] getParameterValue(String[] names){
         List<Object> temp = new ArrayList<>();
-        Iterator<Object> iterator = valueMap.values().iterator();
-        while (iterator.hasNext()){
-            temp.add(iterator.next());
+        for (String s:names){
+            temp.add(valueMap.get(s));
         }
         return temp.toArray();
+    }
+
+    public Class[] getParameterType(){
+        int length = valueMap.size();
+        Class[] result = new Class[length];
+        length = 0;
+        Iterator<Map.Entry<String,Object>> entryIterator = valueMap.entrySet().iterator();
+        while (entryIterator.hasNext()){
+            result[length++] = entryIterator.next().getValue().getClass();
+        }
+        return result;
     }
 
     public MResponse() {

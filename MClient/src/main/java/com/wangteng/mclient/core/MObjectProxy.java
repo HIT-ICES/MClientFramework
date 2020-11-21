@@ -6,6 +6,7 @@ import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.InvocationHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.core.DefaultParameterNameDiscoverer;
 
 import java.lang.reflect.Method;
 
@@ -39,8 +40,10 @@ public class MObjectProxy implements InvocationHandler {
     @Override
     public Object invoke(Object o, Method method, Object[] objects) throws Throwable {
         if(method.getName().equals("transform")){
-            method = target.getClass().getMethod(objects[0].toString());
-            objects = ((MResponse)objects[1]).getObject();
+            method = target.getClass().getMethod(objects[0].toString(),((MResponse)objects[1]).getParameterType());
+            DefaultParameterNameDiscoverer parameterNameDiscoverer = new DefaultParameterNameDiscoverer();
+            String[] names = parameterNameDiscoverer.getParameterNames(method);
+            objects = ((MResponse)objects[1]).getParameterValue(names);
         }
         Object result = method.invoke(o.getClass().getSuperclass().newInstance(),objects);
         return result;
