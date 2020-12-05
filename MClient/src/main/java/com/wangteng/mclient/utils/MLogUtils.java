@@ -22,12 +22,12 @@ public class MLogUtils {
         RollingFileAppender<ILoggingEvent> rollingFileAppender = new RollingFileAppender<ILoggingEvent>();
         rollingFileAppender.setContext(loggerContext);
         rollingFileAppender.setAppend(true);
-        rollingFileAppender.setName("jdSecurityLogAppender");
+        rollingFileAppender.setName("MLogUtils");
         rollingFileAppender.setFile(path);
 
         TimeBasedRollingPolicy rollingPolicy = new TimeBasedRollingPolicy<>();
-        rollingPolicy.setFileNamePattern(path+".%d");
-        rollingPolicy.setMaxHistory(10);
+        rollingPolicy.setFileNamePattern(path+"-%d"+".log");
+        rollingPolicy.setMaxHistory(30);
         rollingPolicy.setContext(loggerContext);
         rollingPolicy.setParent(rollingFileAppender);
         rollingPolicy.start();
@@ -42,7 +42,7 @@ public class MLogUtils {
 
         rollingFileAppender.start();
 
-        ch.qos.logback.classic.Logger rootLogger = loggerContext.getLogger("securityLogLogger");
+        Logger rootLogger = loggerContext.getLogger("MLogUtils");
         rootLogger.setLevel(Level.INFO);
         rootLogger.addAppender(rollingFileAppender);
         return rootLogger;

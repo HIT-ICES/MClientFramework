@@ -13,14 +13,8 @@ public class MController extends MObject {
 
     @GetMapping("/test")
     @MLogFunction
-    public Object test(String string1,Integer int1,Boolean b){
-        log.info(string1);
+    public String test(){
         return "hello";
     }
 
-
-    @GetMapping("/test2")
-    public Object test2(){
-        return "name";
-    }
 }

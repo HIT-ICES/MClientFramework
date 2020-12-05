@@ -13,7 +13,7 @@ import java.util.*;
 @ToString
 public class MResponse {
     private String status = "Success";
-    private Map<String, Object> valueMap = new LinkedHashMap<>();
+    private Map<String, Object> valueMap = new HashMap<>();
 
     public Object get(String key) {
         return this.valueMap.getOrDefault(key, null);
@@ -24,6 +24,7 @@ public class MResponse {
         return this;
     }
 
+
     public Object[] getParameterValue(String[] names){
         List<Object> temp = new ArrayList<>();
         for (String s:names){
@@ -32,16 +33,6 @@ public class MResponse {
         return temp.toArray();
     }
 
-    public Class[] getParameterType(){
-        int length = valueMap.size();
-        Class[] result = new Class[length];
-        length = 0;
-        Iterator<Map.Entry<String,Object>> entryIterator = valueMap.entrySet().iterator();
-        while (entryIterator.hasNext()){
-            result[length++] = entryIterator.next().getValue().getClass();
-        }
-        return result;
-    }
 
     public MResponse() {
 
