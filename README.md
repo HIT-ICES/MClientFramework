@@ -1,15 +1,16 @@
 # MClientFramework
 
 ## Description
-The framework is used to build adaptive microservices and has the following functions
-* Log Function  
-  Using Spring Aop, the interface can provide runtime information with log when the interface is called
-* Proxy Function  
-  Provide a proxy method so that developers can call the interface methods in the proxy object in a unified way
+The framework is used to build adaptive microservices and has the following functions  
+### Log Function
+  Using Spring Aop, the interface can provide runtime information with log when the interface is called.The information is as follows:  
+  * Basic Information:request and response ip and port,request method name.
+  * Exception information:the exception message thrown by the method.
+  * request header information:Request header parameters.
+### Proxy Function  
+  Provide a proxy method so that developers can call the interface methods in the proxy object in a unified way.you can use this to composite or split your interface
 
 ## How to Use
-
-### Add the dependency to your maven pom.xml
 
 ### Log Function
 1. Add annotations **@MClient** on application class
@@ -22,7 +23,7 @@ The framework is used to build adaptive microservices and has the following func
          }
    }
    ```
-2. Add annotations **@MLogFunction** ton required methods
+2. Add annotations **@MLogFunction** to the required method
    ```java
     @Slf4j
     @RestController
@@ -35,24 +36,53 @@ The framework is used to build adaptive microservices and has the following func
     }
     ```
 3. Configure **applicationContext.xml**  in your application 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:myTag="http://www.wangteng.com/mclient/core/mLogFuncation"
-       xsi:schemaLocation="
-       http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-       http://www.wangteng.com/mclient/core/mLogFuncation
-       http://www.wangteng.com/mclient/core/mLogFuncation.xsd">
-    <myTag:aop-log id="test" logPath="D:/MClientFramework/MClient/info.log" logExtra="Accept,Connection" logBug="true"></myTag:aop-log>
-    <myTag:aop-log id="MController" logPath="D:/MClientFramework/MClient/info.log" logExtra="Connection" logBug="true"></myTag:aop-log>
-</beans>
-```
+    ```xml
+    <?xml version="1.0" encoding="UTF-8"?>
+    <beans xmlns="http://www.springframework.org/schema/beans"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:myTag="http://www.wangteng.com/mclient/core/mLogFuncation"
+           xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+           http://www.wangteng.com/mclient/core/mLogFuncation
+           http://www.wangteng.com/mclient/core/mLogFuncation.xsd">
+        <myTag:aop-log id="test" logPath="D:/MClientFramework/MClient/info.log" logExtra="Accept,Connection" logBug="true"></myTag:aop-log>
+        <myTag:aop-log id="MController" logPath="D:/MClientFramework/MClient/info.log" logExtra="Connection" logBug="true"></myTag:aop-log>
+    </beans>
+    ```
+    `mytag` can be changed  
 The meaning of specific configuration parameters can be seen in **aop-logger.xsd**
+    ```xml
+    <?xml version="1.0" encoding="UTF-8" ?>
+    <xsd:schema xmlns="http://www.wangteng.com/mclient/core/mLogFuncation"
+                xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                targetNamespace="http://www.wangteng.com/mclient/core/mLogFuncation"
+                elementFormDefault="qualified">
+        <xsd:element name="aop-log">
+            <xsd:complexType>
+                <!--  Controller name or interface name.You can choose to configure all interfaces in the Controller or configure one interface         -->
+                <xsd:attribute name="id" type="xsd:string" use="required"></xsd:attribute>
+                <!--   Log file path         -->
+                <xsd:attribute name="logPath" type="xsd:string" use="required"></xsd:attribute>
+                <!--   Basic Information         -->
+                <xsd:attribute name="logInfo" type="xsd:boolean" default="true"></xsd:attribute>
+                <!--   Exception information         -->
+                <xsd:attribute name="logBug" type="xsd:boolean" default="false"></xsd:attribute>
+                <!--   request header information         -->
+                <xsd:attribute name="logExtra" type="xsd:string"></xsd:attribute>
+            </xsd:complexType>
+        </xsd:element>
+    </xsd:schema>
+    ```
 
 ### Proxy Function
 1. Use **MObjectProxy** to create a proxy object,and the object that need to be proxied need to inherit from the abstract class `MObject`
+    ```
+    MController mController = new MController();
+    MObjectProxy mControllerProxy = new MObjectProxy();
+    mController = (MController)mControllerProxy.getInstance(mController);
+    mController.transform("test",new MResponse());
+    ```
 2. Use`transform(String methodName,MResponse mResponse)`
 * The first parameter `methodName` is the name of the requested target function;
 * The second parameter `mResponse` is  data, and the key is the parameter name when the target function is defined, and the value is the parameter value.
