@@ -33,13 +33,13 @@ public class MObjectProxy implements InvocationHandler {
         return (MObject)en.create();
     }
 
-    public <T extends MObject> T getInstance(Class<T> tClass) throws IllegalAccessException, InstantiationException {
-        this.target = tClass.newInstance();
-        Enhancer en = new Enhancer();
-        en.setSuperclass(tClass);
-        en.setCallback(this);
-        return tClass.cast(en.create());
-    }
+//    public <T extends MObject> T getInstance(Class<T> tClass) throws IllegalAccessException, InstantiationException {
+//        this.target = tClass.newInstance();
+//        Enhancer en = new Enhancer();
+//        en.setSuperclass(tClass);
+//        en.setCallback(this);
+//        return tClass.cast(en.create());
+//    }
 
     @Override
     public Object invoke(Object o, Method method, Object[] objects) throws Throwable {
@@ -80,7 +80,7 @@ public class MObjectProxy implements InvocationHandler {
             }
             objects = mResponse.getParameterValue(parameterNames);
         }
-        Object result = method.invoke(o.getClass().getSuperclass().newInstance(),objects);
+        Object result = method.invoke(target,objects);
         return result;
     }
 
