@@ -20,7 +20,6 @@ public abstract class MObject {
     protected MObject() {
         this.id = this.getClass().getCanonicalName() + "_" + UUID.randomUUID().toString();
 
-        // exclude the cglib object
         if (this.getId() != null) {
             for (Field field : this.getClass().getDeclaredFields()) {
                 if (field.getAnnotation(MFunctionType.class) != null) {

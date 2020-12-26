@@ -1,6 +1,8 @@
+D:\MClientFramework\MClient\src\main\java\com\wangteng\mclient\annotation\MFunctionType.java
 D:\MClientFramework\MClient\src\main\java\com\wangteng\mclient\core\MObjectProxy.java
 D:\MClientFramework\MClient\src\main\java\com\wangteng\mclient\annotation\MLogFunction.java
 D:\MClientFramework\MClient\src\main\java\com\wangteng\mclient\utils\MLogUtils.java
+D:\MClientFramework\MClient\src\main\java\com\wangteng\mclient\core\MClientSkeleton.java
 D:\MClientFramework\MClient\src\main\java\com\wangteng\mclient\core\MLogAdaptor.java
 D:\MClientFramework\MClient\src\main\java\com\wangteng\mclient\log\LogType.java
 D:\MClientFramework\MClient\src\main\java\com\wangteng\mclient\log\MLog.java
@@ -11,6 +13,7 @@ D:\MClientFramework\MClient\src\main\java\com\wangteng\mclient\controller\MContr
 D:\MClientFramework\MClient\src\main\java\com\wangteng\mclient\log\MBaseLogInfo.java
 D:\MClientFramework\MClient\src\main\java\com\wangteng\mclient\log\MBugLog.java
 D:\MClientFramework\MClient\src\main\java\com\wangteng\mclient\log\MExtraLogInfo.java
+D:\MClientFramework\MClient\src\main\java\com\wangteng\mclient\bean\MClientInfoBean.java
 D:\MClientFramework\MClient\src\main\java\com\wangteng\mclient\aop\MLogFunctionAop.java
 D:\MClientFramework\MClient\src\main\java\com\wangteng\mclient\base\MResponse.java
 D:\MClientFramework\MClient\src\main\java\com\wangteng\mclient\log\LogPoint.java

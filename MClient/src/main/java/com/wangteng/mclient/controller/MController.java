@@ -1,12 +1,12 @@
 package com.wangteng.mclient.controller;
 
 
-import com.wangteng.mclient.annotation.MLogFunction;
-import com.wangteng.mclient.base.MObject;
+import com.wangteng.mclient.bean.MClientInfoBean;
 import com.wangteng.mclient.core.MClientSkeleton;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
 
 @Slf4j
@@ -23,6 +23,15 @@ public class MController {
     @GetMapping(path = "/getMObjectIdList")
     public List<String> getMObjectIdList() {
         return MClientSkeleton.inst().getMObjectIdList();
+    }
+
+    @GetMapping(path = "/info")
+    public MClientInfoBean getInfo() {
+        MClientInfoBean infoBean = new MClientInfoBean();
+        infoBean.setApiMap(MClientSkeleton.inst().getObjectId2ApiSet());
+        infoBean.setParentIdMap(MClientSkeleton.inst().getParentIdMap());
+        infoBean.setMObjectIdSet(new HashSet<>(MClientSkeleton.inst().getMObjectIdList()));
+        return infoBean;
     }
 
 }

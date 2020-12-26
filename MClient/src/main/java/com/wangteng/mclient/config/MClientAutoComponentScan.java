@@ -18,5 +18,4 @@ public class MClientAutoComponentScan {
         return new MLogFunctionAop();
     }
 
-
 }

@@ -1,19 +1,20 @@
 # MClientFramework
 
 ## Description
-The framework is used to build adaptive microservices and has the following functions  
+The framework is used to build adaptive microservices and has the following functions  .
 ### Log Function
   Using Spring Aop, the interface can provide runtime information with log when the interface is called.The information is as follows:  
   * Basic Information:request and response ip and port,request method name.
   * Exception information:the exception message thrown by the method.
   * request header information:Request header parameters.
 ### Proxy Function  
-  Provide a proxy method so that developers can call the interface methods in the proxy object in a unified way.you can use this to composite or split your interface
-
+  Provide a proxy method so that developers can call the interface methods in the proxy object in a unified way.you can use this to composite or split your interface  .
+### Service Information
+   Provide information and dependencies of the internal controller of the service  .
 ## How to Use
 
 ### Log Function
-1. Add annotations **@MClient** on application class
+1. Add annotations **@MClient** on application class.
    ```java
    @MClient
    @SpringBootApplication
@@ -23,7 +24,7 @@ The framework is used to build adaptive microservices and has the following func
          }
    }
    ```
-2. Add annotations **@MLogFunction** to the required method
+2. Add annotations **@MLogFunction** to the required method.
    ```java
     @Slf4j
     @RestController
@@ -35,7 +36,7 @@ The framework is used to build adaptive microservices and has the following func
         }
     }
     ```
-3. Configure **applicationContext.xml**  in your application 
+3. Configure **applicationContext.xml**  in your application .
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
     <beans xmlns="http://www.springframework.org/schema/beans"
@@ -51,7 +52,7 @@ The framework is used to build adaptive microservices and has the following func
     </beans>
     ```
     `mytag` can be changed  
-The meaning of specific configuration parameters can be seen in **aop-logger.xsd**
+The meaning of specific configuration parameters can be seen in **aop-logger.xsd**.
     ```xml
     <?xml version="1.0" encoding="UTF-8" ?>
     <xsd:schema xmlns="http://www.wangteng.com/mclient/core/mLogFuncation"
@@ -76,13 +77,38 @@ The meaning of specific configuration parameters can be seen in **aop-logger.xsd
     ```
 
 ### Proxy Function
-1. Use **MObjectProxy** to create a proxy object,and the object that need to be proxied need to inherit from the abstract class `MObject`
+1. Use **MObjectProxy** to create a proxy object,and the object that need to be proxied need to inherit from the abstract class `MObject`.
     ```
     MController mController = new MController();
     MObjectProxy mControllerProxy = new MObjectProxy();
     mController = (MController)mControllerProxy.getInstance(mController);
     mController.transform("test",new MResponse());
     ```
-2. Use`transform(String methodName,MResponse mResponse)`
+   Another way is to use **@MFunctionType**, which is like **@Autowired**, which can automatically create proxy objects during initialization.
+   ```java
+   @RestController
+   public class DemoController1 extends MObject {
+
+      @MFunctionType
+      public DemoController2 demoController2;
+
+      @MFunctionType
+      public DemoController3 demoController3;
+      
+      @GetMapping("/test")
+      public String test1(){
+         System.out.println(demoController2.transform("test2",new MResponse()));
+         System.out.println(demoController3.transform("test3",new MResponse()));
+         return "hello demo1";
+      }
+   }
+   ```
+2. Use`transform(String methodName,MResponse mResponse)`.
 * The first parameter `methodName` is the name of the requested target function;
 * The second parameter `mResponse` is  data, and the key is the parameter name when the target function is defined, and the value is the parameter value.
+### Service Information
+1. Give each controller an ID during initialization, which indicates how many controllers are in the service, the dependencies between controllers, and the Api interface within each controller.
+2. We provide some additional interfaces.
+   * **/mclient/ismclient**:Whether the service is combined with a programming framework.
+   * **/mclient/getMObjectIdList**:List of Controllers in the service.
+   * **/mclient/info**:Service Information.

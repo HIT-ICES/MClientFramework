@@ -5,7 +5,7 @@
             elementFormDefault="qualified">
     <xsd:element name="aop-log">
         <xsd:complexType>
-            <!--  You can choose to configure all interfaces in the Controller or configure an interface         -->
+            <!--  Controller name or interface name.You can choose to configure all interfaces in the Controller or configure an interface         -->
             <xsd:attribute name="id" type="xsd:string" use="required"></xsd:attribute>
             <!--   Log file path         -->
             <xsd:attribute name="logPath" type="xsd:string" use="required"></xsd:attribute>
