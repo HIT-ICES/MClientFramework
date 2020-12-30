@@ -31,26 +31,6 @@ public class MLogFunctionAop {
 
     @Before("logFunction()")
     public void logFunctionCall(JoinPoint joinPoint) {
-        Object[] args = joinPoint.getArgs();
-        HttpHeaders httpHeaders = null;
-        if (args.length !=0){
-            if (args[args.length-1] instanceof HttpHeaders){
-                System.out.println("存在http");
-                httpHeaders = (HttpHeaders)args[args.length-1];
-            }else{
-                System.out.println("不存在http");
-                httpHeaders = new HttpHeaders();
-            }
-        }else {
-            System.out.println("不存在http");
-            httpHeaders = new HttpHeaders();
-        }
-        if(httpHeaders.get("traceId")==null){
-            System.out.println("不存在traceId");
-            String traceId = UUID.randomUUID().toString();
-            httpHeaders.set("traceId",traceId);
-        }
-
         try {
             MLogAdaptor logAdaptor = null;
             if(!ctx.containsBean(joinPoint.getSignature().getName())){
