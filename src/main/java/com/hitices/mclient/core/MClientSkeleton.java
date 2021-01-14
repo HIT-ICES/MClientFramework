@@ -1,10 +1,17 @@
 package com.hitices.mclient.core;
 
 import com.hitices.mclient.base.MObject;
+import com.hitices.mclient.config.Mvf4msConfig;
+import com.netflix.appinfo.InstanceInfo;
+import com.netflix.discovery.EurekaClient;
+import com.netflix.discovery.shared.Application;
+import com.septemberhx.common.config.Mvf4msDep;
 import lombok.Getter;;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 import java.util.*;
 
@@ -20,6 +27,16 @@ public class MClientSkeleton {
     @Getter
     private Map<String, Set<String>> objectId2ApiSet;
 
+    @Setter
+    private EurekaClient discoveryClient;
+
+    @Setter
+    private RequestMappingHandlerMapping requestMappingHandlerMapping;
+
+    @Setter
+    @Getter
+    private Mvf4msConfig mvf4msConfig;
+
     private MClientSkeleton() {
         this.mObjectMap = new HashMap<>();
         this.parentIdMap = new HashMap<>();
@@ -34,7 +51,33 @@ public class MClientSkeleton {
         }
         return instance;
     }
-    /*
+
+    // -------------------> Version Dependency Stuff <-------------------
+
+    public List<Mvf4msDep> getDepListById(String depId) {
+        return this.mvf4msConfig.getDepListById(depId);
+    }
+
+    // -------------------> eureka stuff <--------------------
+
+    public List<InstanceInfo> getServiceInstances(String serviceName) {
+        Application app = this.discoveryClient.getApplication(serviceName);
+        if (app != null) {
+            return app.getInstances();
+        }
+        return new ArrayList<>();
+    }
+
+    // ------------------> group related stuff <------------------
+
+    /**
+     * Holds all the gateway ip addresses that are in current group.
+     *   It should be provided by the group agent
+     */
+    @Getter
+    private Set<String> groupGatewayIpSet;
+
+    /**
      * register object
      */
     public void registerMObject(MObject object) {
@@ -45,7 +88,7 @@ public class MClientSkeleton {
         }
     }
 
-    /*
+    /**
      * register the parent id of object
      */
     public void registerParent(MObject object, String parentId) {
