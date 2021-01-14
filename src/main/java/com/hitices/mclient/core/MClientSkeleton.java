@@ -75,7 +75,7 @@ public class MClientSkeleton {
      *   It should be provided by the group agent
      */
     @Getter
-    private Set<String> groupGatewayIpSet;
+    private Set<String> groupGatewayIpSet = new HashSet<>();
 
     /**
      * register object

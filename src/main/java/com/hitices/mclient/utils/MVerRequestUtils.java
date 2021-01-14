@@ -53,7 +53,7 @@ public class MVerRequestUtils {
             List<InstanceInfo> filteredList = gatewayInstances.stream().filter(info ->
                     MClientSkeleton.inst().getGroupGatewayIpSet().contains(info.getIPAddr())).collect(Collectors.toList());
             gatewayInstance = filteredList.get(random.nextInt(filteredList.size()));
-        } else {
+        } else if (!gatewayInstances.isEmpty()) {
             gatewayInstance = gatewayInstances.get(random.nextInt(gatewayInstances.size()));
         }
 
