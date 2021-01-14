@@ -11,6 +11,6 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Import(MClientAutoComponentScan.class)
+@Import({MClientAutoComponentScan.class})
 public @interface MClient {
 }

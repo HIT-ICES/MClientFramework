@@ -1,11 +1,11 @@
 package com.hitices.mclient.core;
 
 import com.hitices.mclient.base.MObject;
-import com.hitices.mclient.config.Mvf4msConfig;
+import com.hitices.mclient.config.MClientAutoComponentScan;
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.EurekaClient;
 import com.netflix.discovery.shared.Application;
-import com.septemberhx.common.config.Mvf4msDep;
+import com.hitices.common.config.Mvf4msDep;
 import lombok.Getter;;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +35,7 @@ public class MClientSkeleton {
 
     @Setter
     @Getter
-    private Mvf4msConfig mvf4msConfig;
+    private MClientAutoComponentScan componentScan;
 
     private MClientSkeleton() {
         this.mObjectMap = new HashMap<>();
@@ -55,7 +55,7 @@ public class MClientSkeleton {
     // -------------------> Version Dependency Stuff <-------------------
 
     public List<Mvf4msDep> getDepListById(String depId) {
-        return this.mvf4msConfig.getDepListById(depId);
+        return this.componentScan.getDepListById(depId);
     }
 
     // -------------------> eureka stuff <--------------------

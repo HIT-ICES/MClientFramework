@@ -1,10 +1,10 @@
 package com.hitices.mclient.utils;
 
 import com.netflix.appinfo.InstanceInfo;
-import com.septemberhx.common.bean.MResponse;
-import com.septemberhx.common.config.MConfig;
-import com.septemberhx.common.utils.MRequestUtils;
-import com.septemberhx.common.utils.MUrlUtils;
+import com.hitices.common.bean.MResponse;
+import com.hitices.common.config.MConfig;
+import com.hitices.common.utils.MRequestUtils;
+import com.hitices.common.utils.MUrlUtils;
 import com.hitices.mclient.core.MClientSkeleton;
 import org.springframework.web.bind.annotation.RequestMethod;
 

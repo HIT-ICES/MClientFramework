@@ -1,11 +1,11 @@
 package com.hitices.mclient.controller;
 
 import com.hitices.mclient.bean.MClientInfoBean;
-import com.hitices.mclient.config.Mvf4msConfig;
+import com.hitices.mclient.config.MClientAutoComponentScan;
 import com.hitices.mclient.core.MClientSkeleton;
 import com.netflix.appinfo.ApplicationInfoManager;
 import com.netflix.discovery.EurekaClient;
-import com.septemberhx.common.config.MConfig;
+import com.hitices.common.config.MConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,7 +29,7 @@ public class MController {
     private static Logger logger = LogManager.getLogger(MController.class);
 
     @Autowired
-    private Mvf4msConfig mvf4msConfig;
+    private MClientAutoComponentScan componentScan;
 
     @Qualifier("eurekaApplicationInfoManager")
     @Autowired
@@ -46,11 +46,11 @@ public class MController {
     public void init() {
         Map<String, String> map = aim.getInfo().getMetadata();
         map.put(MConfig.MCLUSTER_SVC_METADATA_NAME, MConfig.MCLUSTER_SVC_METADATA_VALUE);
-        map.put(MConfig.MCLUSTER_SVC_VER_NAME, this.mvf4msConfig.getVersion());
+        map.put(MConfig.MCLUSTER_SVC_VER_NAME, this.componentScan.getVersion());
         MClientSkeleton.inst().setDiscoveryClient(this.discoveryClient);
         MClientSkeleton.inst().setRequestMappingHandlerMapping(this.handlerMapping);
-        MClientSkeleton.inst().setMvf4msConfig(this.mvf4msConfig);
-        logger.info(this.mvf4msConfig.toString());
+        MClientSkeleton.inst().setComponentScan(this.componentScan);
+        logger.info(this.componentScan.toString());
     }
 
     @GetMapping("/ismclient")
