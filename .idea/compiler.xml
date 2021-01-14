@@ -7,7 +7,6 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="mclient" />
         <module name="MOverload" />
         <module name="MClient" />
       </profile>
@@ -15,6 +14,7 @@
     <bytecodeTargetLevel>
       <module name="common" target="1.8" />
       <module name="demo" target="1.8" />
+      <module name="mclient" target="1.8" />
       <module name="MOverload" target="1.8" />
     </bytecodeTargetLevel>
   </component>
