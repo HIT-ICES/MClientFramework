@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.wangteng</groupId>
+    <groupId>com.hitices</groupId>
     <artifactId>mclient</artifactId>
 
     <properties>
