@@ -1,6 +1,8 @@
 package com.hitices.mclient.controller;
 
-import com.hitices.mclient.bean.MClientInfoBean;
+import com.hitices.common.bean.MResponse;
+import com.hitices.common.bean.mclient.MClientInfoBean;
+import com.hitices.common.bean.mclient.MInstInitBean;
 import com.hitices.mclient.config.MClientAutoComponentScan;
 import com.hitices.mclient.core.MClientSkeleton;
 import com.netflix.appinfo.ApplicationInfoManager;
@@ -73,4 +75,10 @@ public class MController {
         return infoBean;
     }
 
+    @ResponseBody
+    @PostMapping(value = "/init")
+    public MResponse instInit(@RequestBody MInstInitBean instInitBean) {
+        MClientSkeleton.inst().setGroupGatewayIpSet(instInitBean.getGroupGatewayIpSet());
+        return MResponse.successResponse();
+    }
 }
