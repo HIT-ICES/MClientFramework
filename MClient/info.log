@@ -1,8 +1,0 @@
-[test|2020-12-05T12:22:58.556+08:00|Before]:logFromIpAddr=0:0:0:0:0:0:0:1, logLocalAddr=0:0:0:0:0:0:0:1, logFromPort=51157, logLocalPort=8803
-[test|2020-12-05T12:22:58.633+08:00|Before]:Accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9; Connection=keep-alive; 
-[test|2020-12-05T12:22:58.635+08:00|Before]:logFromIpAddr=0:0:0:0:0:0:0:1, logLocalAddr=0:0:0:0:0:0:0:1, logFromPort=51157, logLocalPort=8803
-[test|2020-12-05T12:22:58.637+08:00|Before]:Accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9; Connection=keep-alive; 
-[test|2020-12-05T12:22:58.644+08:00|After]:logFromIpAddr=0:0:0:0:0:0:0:1, logLocalAddr=0:0:0:0:0:0:0:1, logFromPort=51157, logLocalPort=8803
-[test|2020-12-05T12:22:58.648+08:00|After]:Accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9; Connection=keep-alive; 
-[test|2020-12-05T12:22:58.651+08:00|After]:logFromIpAddr=0:0:0:0:0:0:0:1, logLocalAddr=0:0:0:0:0:0:0:1, logFromPort=51157, logLocalPort=8803
-[test|2020-12-05T12:22:58.653+08:00|After]:Accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9; Connection=keep-alive; 
