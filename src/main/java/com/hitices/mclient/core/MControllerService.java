@@ -1,5 +1,6 @@
 package com.hitices.mclient.core;
 
+import com.hitices.mclient.base.MObject;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
@@ -43,6 +44,9 @@ public class MControllerService implements ApplicationContextAware {
         Object controller= applicationContext.getBean(beanName);
         if (controller==null) {
             System.out.println("spring容器中已不存在该实体");
+        }
+        if(controller instanceof MObject){
+            MClientSkeleton.inst().removeMobject(((MObject) controller).getId());
         }
         defaultListableBeanFactory.removeBeanDefinition(beanName);
         Class<?> targetClass = controller.getClass();

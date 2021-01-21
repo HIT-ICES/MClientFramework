@@ -46,6 +46,25 @@ public class MClientSkeleton {
     }
 
     /**
+     * remove object
+     */
+    public void removeMobject(String id){
+        if(this.mObjectMap.containsKey(id)){
+            this.mObjectMap.remove(id);
+            for (Map.Entry<String, String> entry : this.parentIdMap.entrySet()) {
+                if(entry.getValue().equals(id)){
+                    this.parentIdMap.remove(entry.getKey());
+                    this.removeMobject(entry.getKey());
+                }
+            }
+        }
+        if(this.objectId2ApiSet.containsKey(id)){
+            this.objectId2ApiSet.remove(id);
+        }
+    }
+
+
+    /**
      * register the parent id of object
      */
     public void registerParent(MObject object, String parentId) {
