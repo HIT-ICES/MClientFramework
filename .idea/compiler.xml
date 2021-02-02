@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="MOverload" />
         <module name="MClient" />
+        <module name="MClientFramework" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

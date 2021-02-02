@@ -2,6 +2,7 @@ package com.hitices.mclient.config;
 
 import com.hitices.mclient.aop.MLogFunctionAop;
 import com.hitices.mclient.controller.MController;
+import com.hitices.mclient.core.MControllerService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,6 +17,11 @@ public class MClientAutoComponentScan {
     @Bean
     public MLogFunctionAop mLogFunctionAop(){
         return new MLogFunctionAop();
+    }
+
+    @Bean
+    public MControllerService mControllerService(){
+        return new MControllerService();
     }
 
 }

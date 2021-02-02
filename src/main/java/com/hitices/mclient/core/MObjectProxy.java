@@ -32,13 +32,13 @@ public class MObjectProxy implements InvocationHandler {
         return (MObject)en.create();
     }
 
-//    public <T extends MObject> T getInstance(Class<T> tClass) throws IllegalAccessException, InstantiationException {
-//        this.target = tClass.newInstance();
-//        Enhancer en = new Enhancer();
-//        en.setSuperclass(tClass);
-//        en.setCallback(this);
-//        return tClass.cast(en.create());
-//    }
+    public <T extends MObject> T getInstance(Class<T> tClass) throws IllegalAccessException, InstantiationException {
+        this.target = tClass.newInstance();
+        Enhancer en = new Enhancer();
+        en.setSuperclass(tClass);
+        en.setCallback(this);
+        return tClass.cast(en.create());
+    }
 
     @Override
     public Object invoke(Object o, Method method, Object[] objects) throws Throwable {
@@ -52,7 +52,7 @@ public class MObjectProxy implements InvocationHandler {
             for(Method m :target.getClass().getDeclaredMethods()){
                 if(m.getName().equals(methodName)){
                     parameterNames = parameterNameDiscoverer.getParameterNames(m);
-                    if(valueMap.keySet().equals(StringUtils.ArrayToSet(parameterNames))){
+                    if(valueMap.keySet().equals(StringUtils.arrayToSet(parameterNames))){
                         //参数名一致
                         //判断同名参数的数据类型是否一致
                         getMethod = true;
@@ -62,13 +62,16 @@ public class MObjectProxy implements InvocationHandler {
                         for(int i = 0;i< objectsTemp.length;i++){
                             if(!objectsTemp[i].getClass().getTypeName().equals(types[i].getTypeName())){
                                 //排除基本类型与其封装类型冲突的情况
-                                if(isPrimitiveType(objectsTemp[i].getClass().getTypeName(),types[i].getTypeName()))
+                                if(isPrimitiveType(objectsTemp[i].getClass().getTypeName(),types[i].getTypeName())){
                                     continue;
+                                }
                                 getMethod = false;
                                 break;
                             }
                         }
-                        if(getMethod) break;
+                        if(getMethod) {
+                            break;
+                        }
                     }
 
                 }
@@ -86,28 +89,44 @@ public class MObjectProxy implements InvocationHandler {
     private static boolean isPrimitiveType(String type1,String type2){
         if(type2.equals(byte.class.getTypeName())){
             if(type1.equals(Byte.class.getTypeName()))
+            {
                 return true;
+            }
         }else if(type2.equals(char.class.getTypeName())){
             if(type1.equals(Character.class.getTypeName()))
+            {
                 return true;
+            }
         }else if(type2.equals(short.class.getTypeName())){
             if(type1.equals(Short.class.getTypeName()))
+            {
                 return true;
+            }
         }else if(type2.equals(int.class.getTypeName())){
             if(type1.equals(Integer.class.getTypeName()))
+            {
                 return true;
+            }
         }else if(type2.equals(long.class.getTypeName())){
             if(type1.equals(Long.class.getTypeName()))
+            {
                 return true;
+            }
         }else if(type2.equals(float.class.getTypeName())){
             if(type1.equals(Float.class.getTypeName()))
+            {
                 return true;
+            }
         }else if(type2.equals(double.class.getTypeName())){
             if(type1.equals(Double.class.getTypeName()))
+            {
                 return true;
+            }
         }else if(type2.equals(boolean.class.getTypeName())){
             if(type1.equals(Boolean.class.getTypeName()))
+            {
                 return true;
+            }
         }
         return false;
     }

@@ -31,26 +31,6 @@ public class MLogFunctionAop {
 
     @Before("logFunction()")
     public void logFunctionCall(JoinPoint joinPoint) {
-        Object[] args = joinPoint.getArgs();
-        HttpHeaders httpHeaders = null;
-        if (args.length !=0){
-            if (args[args.length-1] instanceof HttpHeaders){
-                System.out.println("存在http");
-                httpHeaders = (HttpHeaders)args[args.length-1];
-            }else{
-                System.out.println("不存在http");
-                httpHeaders = new HttpHeaders();
-            }
-        }else {
-            System.out.println("不存在http");
-            httpHeaders = new HttpHeaders();
-        }
-        if(httpHeaders.get("traceId")==null){
-            System.out.println("不存在traceId");
-            String traceId = UUID.randomUUID().toString();
-            httpHeaders.set("traceId",traceId);
-        }
-
         try {
             MLogAdaptor logAdaptor = null;
             if(!ctx.containsBean(joinPoint.getSignature().getName())){
@@ -60,7 +40,7 @@ public class MLogFunctionAop {
                 logAdaptor = (MLogAdaptor) ctx.getBean(joinPoint.getSignature().getName());
             }
             if (logAdaptor != null) {
-                for (LogType logType : MLogFunctionUtils.before) {
+                for (LogType logType : MLogFunctionUtils.BEFORE) {
                     if (logAdaptor.getLogMap().get(logType) != null) {
                         logAdaptor.getLogMap().get(logType).setInfo(LogPoint.Before, joinPoint);
                         MLogUtils.log(logAdaptor, logAdaptor.getLogMap().get(logType).toString());
@@ -84,7 +64,7 @@ public class MLogFunctionAop {
                 logAdaptor = (MLogAdaptor) ctx.getBean(joinPoint.getSignature().getName());
             }
             if (logAdaptor != null) {
-                for (LogType logType : MLogFunctionUtils.after) {
+                for (LogType logType : MLogFunctionUtils.AFTER) {
                     if (logAdaptor.getLogMap().get(logType) != null) {
                         logAdaptor.getLogMap().get(logType).setInfo(LogPoint.After, joinPoint);
                         MLogUtils.log(logAdaptor, logAdaptor.getLogMap().get(logType).toString());
@@ -107,7 +87,7 @@ public class MLogFunctionAop {
                 logAdaptor = (MLogAdaptor) ctx.getBean(joinPoint.getSignature().getName());
             }
             if (logAdaptor != null) {
-                for (LogType logType : MLogFunctionUtils.afterThrowing) {
+                for (LogType logType : MLogFunctionUtils.AFTER_THROWING) {
                     if (logAdaptor.getLogMap().get(logType) != null) {
                         logAdaptor.getLogMap().get(logType).setInfo(LogPoint.AfterThrowing, joinPoint, e);
                         MLogUtils.log(logAdaptor, logAdaptor.getLogMap().get(logType).toString());

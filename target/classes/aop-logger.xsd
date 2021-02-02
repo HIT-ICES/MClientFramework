@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns="http://www.wangteng.com/mclient/core/mLogFuncation"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.wangteng.com/mclient/core/mLogFuncation"
+            elementFormDefault="qualified">
+    <xsd:element name="aop-log">
+        <xsd:complexType>
+            <!--  Controller name or interface name.You can choose to configure all interfaces in the Controller or configure an interface         -->
+            <xsd:attribute name="id" type="xsd:string" use="required"></xsd:attribute>
+            <!--   Log file path         -->
+            <xsd:attribute name="logPath" type="xsd:string" use="required"></xsd:attribute>
+            <!--   Basic Information         -->
+            <xsd:attribute name="logInfo" type="xsd:boolean" default="true"></xsd:attribute>
+            <!--   Exception information         -->
+            <xsd:attribute name="logBug" type="xsd:boolean" default="false"></xsd:attribute>
+            <!--   request header information         -->
+            <xsd:attribute name="logExtra" type="xsd:string"></xsd:attribute>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>

@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 public class StringUtils {
-    public static Set<String> ArrayToSet(String[] strings){
+    public static Set<String> arrayToSet(String[] strings){
         Set<String> stringSet = new HashSet<>();
         for (String s : strings){
             stringSet.add(s);

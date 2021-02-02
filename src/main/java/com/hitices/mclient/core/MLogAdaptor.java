@@ -12,7 +12,7 @@ import java.util.Map;
 @Getter
 @Setter
 public class MLogAdaptor {
-    private String id;//接口名称
+    private String id;
     private String logPath;
     private Map<LogType, MLog> logMap = new HashMap<>();
 
