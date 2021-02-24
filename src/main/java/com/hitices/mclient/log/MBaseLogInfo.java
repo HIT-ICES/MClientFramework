@@ -35,12 +35,12 @@ public class MBaseLogInfo extends MLog {
 
     @Override
     public String toString() {
-        return "[" +logName+'|'+
+        return "[INFO|" +logName+'|'+
                 logDateTime+'|'+
-                logPoint+']'+':'+
+                logPoint+']'+ ": " +
                 "logFromIpAddr=" + logFromIpAddr+
-                ", logLocalAddr=" + logLocalAddr+
-                ", logFromPort=" + logFromPort +
-                ", logLocalPort=" + logLocalPort;
+                "; logLocalAddr=" + logLocalAddr+
+                "; logFromPort=" + logFromPort +
+                "; logLocalPort=" + logLocalPort;
     }
 }

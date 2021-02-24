@@ -18,9 +18,9 @@ public class MBugLog extends MLog{
 
     @Override
     public String toString() {
-        return "[" +logName+'|'+
+        return "[BUG|"  +logName+'|'+
                 logDateTime+'|'+
-                logPoint+']'+':'+
+                logPoint+']'+ ": " +
                 e;
     }
 }

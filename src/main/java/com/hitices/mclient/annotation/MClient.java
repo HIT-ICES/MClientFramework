@@ -1,6 +1,5 @@
 package com.hitices.mclient.annotation;
 
-
 import com.hitices.mclient.config.MClientAutoComponentScan;
 import org.springframework.context.annotation.Import;
 

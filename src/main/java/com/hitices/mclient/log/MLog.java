@@ -27,10 +27,8 @@ public abstract class MLog {
 
     @Override
     public String toString() {
-        return "MLog{" +
-                "logName='" + logName + '\'' +
-                ", logDateTime=" + logDateTime +
-                ", logPoint=" + logPoint +
-                '}';
+        return "[MLOG|" +logName+'|'+
+                logDateTime+'|'+
+                logPoint+']';
     }
 }

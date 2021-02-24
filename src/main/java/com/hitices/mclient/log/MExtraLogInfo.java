@@ -39,9 +39,9 @@ public class MExtraLogInfo extends MLog{
         for (Map.Entry<String, String> entry : header.entrySet()) {
             headerString += entry.getKey()+"="+entry.getValue()+"; ";
         }
-        return "["+ logName + '|' +
+        return "[EXTRA|" + logName + '|' +
                 logDateTime + '|' +
                 logPoint +']' +
-                ':'+headerString;
+                ": " +headerString;
     }
 }
