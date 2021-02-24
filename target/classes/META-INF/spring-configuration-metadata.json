@@ -1,0 +1,22 @@
+{
+  "groups": [
+    {
+      "name": "mvf4ms",
+      "type": "com.hitices.mclient.config.MClientAutoComponentScan",
+      "sourceType": "com.hitices.mclient.config.MClientAutoComponentScan"
+    }
+  ],
+  "properties": [
+    {
+      "name": "mvf4ms.dependencies",
+      "type": "java.util.List<com.hitices.common.config.Mvf4msDepConfig>",
+      "sourceType": "com.hitices.mclient.config.MClientAutoComponentScan"
+    },
+    {
+      "name": "mvf4ms.version",
+      "type": "java.lang.String",
+      "sourceType": "com.hitices.mclient.config.MClientAutoComponentScan"
+    }
+  ],
+  "hints": []
+}
