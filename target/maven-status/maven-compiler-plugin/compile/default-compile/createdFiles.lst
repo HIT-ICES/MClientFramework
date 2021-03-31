@@ -2,7 +2,7 @@ com\hitices\mclient\utils\MLogFunctionUtils.class
 com\hitices\mclient\log\MExtraLogInfo.class
 com\hitices\mclient\aop\MLogFunctionAop.class
 com\hitices\mclient\utils\StringUtils.class
-com\hitices\mclient\core\MControllerService.class
+com\hitices\mclient\base\MParam.class
 com\hitices\mclient\core\MObjectProxy.class
 META-INF\spring-configuration-metadata.json
 com\hitices\mclient\config\NamespaceHandler.class
@@ -13,14 +13,11 @@ com\hitices\mclient\log\MBaseLogInfo.class
 com\hitices\mclient\annotation\MLogFunction.class
 com\hitices\mclient\utils\MLogUtils.class
 com\hitices\mclient\annotation\MFunctionType.class
-com\hitices\mclient\bean\MControllerInfoBean.class
 com\hitices\mclient\controller\MController.class
 com\hitices\mclient\annotation\MFuncDescription.class
 com\hitices\mclient\log\LogType.class
-com\hitices\mclient\base\MResponse.class
 com\hitices\mclient\core\MClientSkeleton.class
 com\hitices\mclient\log\MBugLog.class
-com\hitices\mclient\core\MControllerService$1.class
 com\hitices\mclient\config\AopLoggerBeanDefinitionParser.class
 com\hitices\mclient\log\MLog.class
 com\hitices\mclient\base\MObject.class

@@ -11,7 +11,7 @@ import java.util.*;
 @Getter
 @Setter
 @ToString
-public class MResponse {
+public class MParam {
     private String status = "Success";
     private Map<String, Object> valueMap = new HashMap<>();
 
@@ -19,7 +19,7 @@ public class MResponse {
         return this.valueMap.getOrDefault(key, null);
     }
 
-    public MResponse set(String key, Object value) {
+    public MParam set(String key, Object value) {
         this.valueMap.put(key, value);
         return this;
     }
@@ -34,13 +34,9 @@ public class MResponse {
     }
 
 
-    public MResponse() {
+    public MParam() {
 
     }
 
-    public static MResponse failResponse() {
-        MResponse response = new MResponse();
-        response.setStatus("Fail");
-        return response;
-    }
+
 }

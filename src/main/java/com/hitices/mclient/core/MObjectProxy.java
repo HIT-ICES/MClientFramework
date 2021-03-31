@@ -1,7 +1,7 @@
 package com.hitices.mclient.core;
 
 import com.hitices.mclient.base.MObject;
-import com.hitices.mclient.base.MResponse;
+import com.hitices.mclient.base.MParam;
 import com.hitices.mclient.utils.StringUtils;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.InvocationHandler;
@@ -45,7 +45,7 @@ public class MObjectProxy implements InvocationHandler {
         if(method.getName().equals("transform")){
             Boolean getMethod = false;
             String methodName = objects[0].toString();
-            MResponse mResponse = (MResponse)objects[1];
+            MParam mResponse = (MParam)objects[1];
             DefaultParameterNameDiscoverer parameterNameDiscoverer = new DefaultParameterNameDiscoverer();
             String[] parameterNames = null;
             Map<String, Object> valueMap = mResponse.getValueMap();
@@ -63,6 +63,9 @@ public class MObjectProxy implements InvocationHandler {
                             if(!objectsTemp[i].getClass().getTypeName().equals(types[i].getTypeName())){
                                 //排除基本类型与其封装类型冲突的情况
                                 if(isPrimitiveType(objectsTemp[i].getClass().getTypeName(),types[i].getTypeName())){
+                                    continue;
+                                }
+                                if(Class.forName(types[i].getTypeName()).isAssignableFrom(objectsTemp[i].getClass())){
                                     continue;
                                 }
                                 getMethod = false;
@@ -130,4 +133,5 @@ public class MObjectProxy implements InvocationHandler {
         }
         return false;
     }
+
 }

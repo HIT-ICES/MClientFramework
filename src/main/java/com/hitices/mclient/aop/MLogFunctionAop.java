@@ -49,7 +49,7 @@ public class MLogFunctionAop {
                 }
             }
         } catch (Exception e) {
-            // TODO: 无配置文件
+            throw new RuntimeException("There is no applicationContext.xml");
         }
     }
 
@@ -72,7 +72,7 @@ public class MLogFunctionAop {
                 }
             }
         } catch (Exception e) {
-            // TODO: 无配置文件
+            throw new RuntimeException("There is no applicationContext.xml");
         }
     }
 
@@ -96,7 +96,7 @@ public class MLogFunctionAop {
                 }
             }
         } catch (Exception ex) {
-            // TODO: 无配置文件
+            throw new RuntimeException("There is no applicationContext.xml");
         }
     }
 

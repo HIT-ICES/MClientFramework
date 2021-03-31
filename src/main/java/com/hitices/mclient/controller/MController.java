@@ -77,4 +77,11 @@ public class MController {
         MClientSkeleton.inst().setGroupGatewayIpSet(instInitBean.getGroupGatewayIpSet());
         return MResponse.successResponse();
     }
+
+
+    @GetMapping(path="/mvf4ms")
+    public String getDependence(){
+        return componentScan.getDep();
+    }
+
 }

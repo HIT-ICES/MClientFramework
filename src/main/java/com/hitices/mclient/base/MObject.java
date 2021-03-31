@@ -24,7 +24,7 @@ public abstract class MObject {
             for (Field field : this.getClass().getDeclaredFields()) {
                 if (field.getAnnotation(MFunctionType.class) != null) {
                     if (!MObject.class.isAssignableFrom(field.getType())) {
-                        throw new IllegalArgumentException("Wrong type with MFunctionType com.wangteng.mclient.annotation!");
+                        throw new IllegalArgumentException("Wrong type with MFunctionType com.hitices.mclient.annotation!");
                     } else {
 
                         try {
@@ -70,7 +70,7 @@ public abstract class MObject {
         this.id = id;
     }
 
-    public Object transform(String methodName,MResponse mResponse){
+    public Object transform(String methodName,MParam mResponse){
         return null;
     }
 

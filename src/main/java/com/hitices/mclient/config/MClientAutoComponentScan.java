@@ -4,7 +4,6 @@ import com.hitices.common.config.Mvf4msDep;
 import com.hitices.common.config.Mvf4msDepConfig;
 import com.hitices.mclient.aop.MLogFunctionAop;
 import com.hitices.mclient.controller.MController;
-import com.hitices.mclient.core.MControllerService;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -37,10 +36,6 @@ public class MClientAutoComponentScan {
         return new MLogFunctionAop();
     }
 
-    @Bean
-    public MControllerService mControllerService(){
-        return new MControllerService();
-    }
 
     /**
      * Please note that there may have multi dep with the same dep id for one request
@@ -53,5 +48,17 @@ public class MClientAutoComponentScan {
 
         return result;
     }
+
+    public String getDep(){
+        String result = "";
+        if(this.dependencies==null){
+            return "null";
+        }
+        for (Mvf4msDepConfig depConfig : this.dependencies) {
+           result += depConfig.toString();
+        }
+        return result;
+    }
+
 
 }

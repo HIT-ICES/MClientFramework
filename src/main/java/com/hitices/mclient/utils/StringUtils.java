@@ -15,13 +15,4 @@ public class StringUtils {
         }
         return stringSet;
     }
-
-    public static void main(String[] args) {
-        boolean b = true;
-        List<String> strings = new ArrayList<>();
-        MController m = new MController();
-        String s1 = "java.lang.Integer";
-        String s2 = "int";
-        System.out.println(m.getClass().getTypeName());
-    }
 }
