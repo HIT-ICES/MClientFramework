@@ -41,12 +41,12 @@ The framework is used to build adaptive microservices and has the following func
     <?xml version="1.0" encoding="UTF-8"?>
     <beans xmlns="http://www.springframework.org/schema/beans"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xmlns:myTag="http://www.wangteng.com/mclient/core/mLogFuncation"
+           xmlns:myTag="http://www.hitices.com/mclient/core/mLogFuncation"
            xsi:schemaLocation="
            http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-           http://www.wangteng.com/mclient/core/mLogFuncation
-           http://www.wangteng.com/mclient/core/mLogFuncation.xsd">
+           http://www.hitices.com/mclient/core/mLogFuncation
+           http://www.hitices.com/mclient/core/mLogFuncation.xsd">
         <myTag:aop-log id="test" logPath="D:/MClientFramework/MClient/info.log" logExtra="Accept,Connection" logBug="true"></myTag:aop-log>
         <myTag:aop-log id="MController" logPath="D:/MClientFramework/MClient/info.log" logExtra="Connection" logBug="true"></myTag:aop-log>
     </beans>
@@ -55,9 +55,9 @@ The framework is used to build adaptive microservices and has the following func
 The meaning of specific configuration parameters can be seen in **aop-logger.xsd**.
     ```xml
     <?xml version="1.0" encoding="UTF-8" ?>
-    <xsd:schema xmlns="http://www.wangteng.com/mclient/core/mLogFuncation"
+    <xsd:schema xmlns="http://www.hitices.com/mclient/core/mLogFuncation"
                 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-                targetNamespace="http://www.wangteng.com/mclient/core/mLogFuncation"
+                targetNamespace="http://www.hitices.com/mclient/core/mLogFuncation"
                 elementFormDefault="qualified">
         <xsd:element name="aop-log">
             <xsd:complexType>
@@ -82,7 +82,7 @@ The meaning of specific configuration parameters can be seen in **aop-logger.xsd
     MController mController = new MController();
     MObjectProxy mControllerProxy = new MObjectProxy();
     mController = (MController)mControllerProxy.getInstance(mController);
-    mController.transform("test",new MResponse());
+    mController.transform("test",new MParam());
     ```
    Another way is to use **@MFunctionType**, which is like **@Autowired**, which can automatically create proxy objects during initialization.
    ```java
@@ -97,15 +97,15 @@ The meaning of specific configuration parameters can be seen in **aop-logger.xsd
       
       @GetMapping("/test")
       public String test1(){
-         System.out.println(demoController2.transform("test2",new MResponse()));
-         System.out.println(demoController3.transform("test3",new MResponse()));
+         System.out.println(demoController2.transform("test2",new MParam()));
+         System.out.println(demoController3.transform("test3",new MParam()));
          return "hello demo1";
       }
    }
    ```
-2. Use`transform(String methodName,MResponse mResponse)`.
+2. Use`transform(String methodName,Mparam mparam)`.
 * The first parameter `methodName` is the name of the requested target function;
-* The second parameter `mResponse` is  data, and the key is the parameter name when the target function is defined, and the value is the parameter value.
+* The second parameter `mParam` is  data, and the key is the parameter name when the target function is defined, and the value is the parameter value.
 ### Service Information
 1. Give each controller an ID during initialization, which indicates how many controllers are in the service, the dependencies between controllers, and the Api interface within each controller.
 2. We provide some additional interfaces.

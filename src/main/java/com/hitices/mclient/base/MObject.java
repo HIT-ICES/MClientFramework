@@ -70,7 +70,7 @@ public abstract class MObject {
         this.id = id;
     }
 
-    public Object transform(String methodName,MParam mResponse){
+    public Object transform(String methodName,MParam mParam){
         return null;
     }
 
